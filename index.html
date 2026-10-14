@@ -1,8 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Zean Chen</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Zean Chen, Ph.D. student at Ningbo University, researching light field reconstruction and super-resolution under heterogeneous imaging." />
+	<title>Zean Chen | Ningbo University | Light Field Imaging</title>
 	<style>
 		/* =========================
 		   Global / Layout
@@ -18,31 +20,34 @@
 		}
 		a{ color:#1a0dab; text-decoration:none; }
 		a:hover{ text-decoration:underline; }
+		a:focus-visible, summary:focus-visible{ outline:2px solid #1a0dab; outline-offset:4px; }
+		*{ box-sizing:border-box; }
 
 		#container{
-			width: 980px;
-			margin: 46px auto;
-			padding: 0 10px;
+			width:100%;
+			max-width:1020px;
+			margin: 24px auto 46px;
+			padding: 0 20px;
 		}
 
-		/* Top header block (keep your float structure) */
-		#left{
-			float:left;
-			width:230px;
-			margin-left:0;
+		/* Responsive profile header */
+		.profile-header{
+			display:grid;
+			grid-template-columns:200px minmax(0, 1fr);
+			gap:60px;
+			align-items:start;
 		}
 		#left img{
 			display:block;
 			width:200px;
+			max-width:100%;
 			height:auto;
 			border:0;
 		}
 		#right{
-			float:left;
-			width:720px;
-			margin-left:30px;
+			min-width:0;
+			overflow-wrap:anywhere;
 		}
-		.clear{ clear:both; height:0; line-height:0; font-size:0; }
 
 		#name{
 			font-size:28px;
@@ -58,10 +63,23 @@
 		#info p{ margin:4px 0; }
 
 		.links{
+			display:flex;
+			flex-wrap:wrap;
+			gap:4px 8px;
 			margin-top:10px;
 			font-size:15px;
 		}
 		.links span{ white-space:nowrap; }
+		.section-nav{
+			display:flex;
+			flex-wrap:wrap;
+			justify-content:flex-end;
+			gap:4px 18px;
+			margin:0 0 24px;
+			font-size:15px;
+		}
+		.section-nav a{ display:inline-flex; align-items:center; min-height:44px; color:#555; }
+		.section-nav a:hover{ color:#1a0dab; }
 
 		/* =========================
 		   Sections (academic style)
@@ -81,27 +99,14 @@
 		}
 		.Bio{
 			font-size:16px;
-			text-align:justify;
+			text-align:left;
 			margin:0;
 		}
+		.Bio + .Bio{ margin-top:10px; }
 
-		/* NEW label (pure red in RGB) */
-		.new-label{
-			font-weight:bold;
-			color: rgb(255,0,0);
-			letter-spacing: 0.2px;
-		}
-
-		/* Scrollable News (academic, no card) */
-		.news-container{
-			max-height: 140px;     /* 可调：120/160/180 */
-			overflow-y: auto;
-			padding-right: 6px;
-		}
-		/* Low-key scrollbar (optional) */
-		.news-container::-webkit-scrollbar{ width: 6px; }
-		.news-container::-webkit-scrollbar-thumb{ background-color: #bbb; }
-		.news-container::-webkit-scrollbar-track{ background: transparent; }
+		/* Earlier news uses a native disclosure, without an inner scrollbar. */
+		.news-archive{ margin-top:10px; }
+		.news-archive summary{ cursor:pointer; padding:5px 0; }
 
 		/* Lists (News/Education/Awards) */
 		.simple-list{
@@ -125,30 +130,37 @@
 		}
 
 		.paper{
-			overflow:auto;
-			zoom:1;
+			display:grid;
+			grid-template-columns:minmax(140px, 22.45%) minmax(0, 1fr);
+			gap:30px;
+			align-items:start;
 			padding: 10px 0 12px 0;
 			border-bottom: 0;      /* <- no divider between papers */
 			margin-bottom: 10px;    /* <- spacing only */
 		}
 
 		.sub-left{
-			float:left;
-			width:250px;
 			display:flex;
 			justify-content:flex-start;
 			align-items:center;
 			min-height:100px;
 		}
 		.sub-left img{
-			max-width:220px;
+			display:block;
+			max-width:100%;
 			height:auto;
 			border:0;
 		}
 		.sub-right{
-			float:left;
-			width:700px;
+			min-width:0;
 		}
+		.image-link{ display:block; max-width:100%; cursor:zoom-in; }
+		.sub-left .image-link{ width:100%; max-width:220px; }
+		.software-preview{ width:640px; margin:16px 0 10px; }
+		.software-image{ display:block; width:100%; height:auto; }
+		.software-title{ font-size:18px; margin:0 0 6px; }
+		.software-description{ margin:0; }
+		.software-start{ margin:0 0 8px; }
 
 		.paperTitle{
 			font-size:16px;
@@ -196,56 +208,80 @@
 			font-size:14px;
 			padding-top:10px;
 		}
+
+		@media (max-width:768px){
+			#container{ margin:24px auto; padding:0 16px; }
+			.profile-header{ grid-template-columns:160px minmax(0, 1fr); gap:30px; }
+			#left img{ width:160px; }
+		}
+		@media (max-width:560px){
+			.section-nav{ justify-content:flex-start; gap:0 18px; margin-bottom:18px; }
+			.profile-header{ grid-template-columns:1fr; gap:18px; }
+			.paper{ grid-template-columns:1fr; gap:12px; }
+			.sub-left{ min-height:0; }
+			.sub-left img{ max-width:min(220px, 100%); }
+		}
 	</style>
 </head>
 
 <body>
 	<div id="container">
+		<nav class="section-nav" aria-label="Page sections">
+			<a href="#about">About</a>
+			<a href="#news">News</a>
+			<a href="#publications">Publications</a>
+			<a href="#software">Software</a>
+			<a href="#education">Education</a>
+			<a href="#awards">Awards</a>
+			<!-- <a href="#service">Service</a> -->
+		</nav>
+
 		<!-- =========================
 		     Header
 		========================= -->
+		<header class="profile-header">
 		<div id="left">
 			<img src="imgs/chenzean.png" alt="Zean Chen">
 		</div>
 
 		<div id="right">
-			<div id="name">Zean Chen (陈则安)</div>
+			<h1 id="name">Zean Chen (陈则安)</h1>
 
 			<div id="info">
-				<p>Graduate Student</p>
+				<p>Ph.D. Student</p>
 				<p>Ningbo University</p>
-				<p>Email: chenzean2024@126.com, cza0628@gmail.com</p>
+				<p>Email: <a href="mailto:chenzean2024@126.com">chenzean2024@126.com</a>, <a href="mailto:cza0628@gmail.com">cza0628@gmail.com</a></p>
 			</div>
 
 			<div class="links">
 				<a href="https://github.com/chenzean" target="_blank" rel="nofollow"><span>GitHub</span></a>
-				&nbsp;|&nbsp;
+				<span aria-hidden="true">|</span>
 				<a href="https://scholar.google.com.hk/citations?hl=zh-CN&user=Av1P5cUAAAAJ&view_op=list_works&gmla=AL3_zijsBAleFgqaUmEVnIWyMpP90oTgpdFXQDnXgvCM7_FbOTockLVSHeQudarWDAmnyVSSCiPXabdbRFRu_50xe9XYZaHbC4iHegcA3k3KiT-UBSk"
 				   target="_blank" rel="nofollow"><span>Google Scholar</span></a>
 			</div>
 		</div>
-
-		<div class="clear"></div>
+		</header>
 
 		<!-- =========================
 		     1) About / Profile
 		========================= -->
-		<div class="section" style="margin-top: 28px;">
-			<div class="section-title">About / Profile</div>
+		<section class="section" id="about">
+			<h2 class="section-title">About / Profile</h2>
 			<hr class="section-rule">
 			<p class="Bio">
-				I am currently a first-year Ph.D. student at Ningbo University, supervised by Prof. Gangyi Jiang and Dr. Yeyao Chen. 
-				My research interests mainly focus on low-level vision tasks related to light field images and videos.
-				I welcome academic collaboration in various forms. 
-				Please feel free to contact me via email at chenzean2024@126.com or WeChat (ID: 18358481590) if you are interested in discussing potential research collaborations.
+				I am a Ph.D. student at Ningbo University (since September 2025), supervised by Prof. Gangyi Jiang and Dr. Yeyao Chen.
+				My research focuses on light field reconstruction and super-resolution under heterogeneous imaging.
 			</p>
-		</div>
+			<p class="Bio">
+				For research collaborations, contact me by <a href="mailto:chenzean2024@126.com">email</a> or WeChat (ID: 18358481590).
+			</p>
+		</section>
 
 		<!-- =========================
-		     2) News (New only, pure red; scrollable)
+		     2) Recent News
 		========================= -->
-		<div class="section">
-			<div class="section-title"><span class="new-label">New !!!</span></div>
+		<section class="section" id="news">
+			<h2 class="section-title">Recent News</h2>
 			<hr class="section-rule">
 
 			<div class="news-container">
@@ -261,7 +297,7 @@
 					  </li>
 
 					<li>
-						<span class="item-date">2025.07</span> —
+						<span class="item-date">2026</span> —
 						🎉 Our paper <b>“Heterogeneous Imaging-Driven Light Field Reconstruction: A Benchmark Dataset and a Learning-based Method”</b>
 						was published in <span class="badge">IEEE TCSVT</span>.
 					  </li>
@@ -270,7 +306,10 @@
 						<span class="item-date">2025.04</span> —
 						🎉 We ranked <b>6th</b> in the <b>NTIRE 2025 Challenge on Light Field Image Super-Resolution</b>.
 					  </li>
-					  
+				</ul>
+				<details class="news-archive">
+					<summary>Earlier news</summary>
+					<ul class="simple-list">
 					  <li>
 						<span class="item-date">2025.03</span> —
 						🎉 Our paper <b>“Geometry-Aware RWKV for Heterogeneous Light Field Spatial Super-Resolution”</b>
@@ -288,40 +327,16 @@
 						🎉 Our paper <b>“Hybrid Domain Learning towards Light Field Spatial Super-Resolution using Heterogeneous Imaging”</b>
 						was accepted by <span class="badge">ICASSP</span>.
 					  </li>
-					<!-- add more:
-					<li><span class="item-date">2023.XX</span> — ...</li>
-					-->
 				</ul>
+				</details>
 			</div>
-		</div>
+		</section>
 
 		<!-- =========================
-		     3) Education
+		     3) Publications
 		========================= -->
-		<div class="section">
-			<div class="section-title">Education</div>
-			<hr class="section-rule">
-			<ul class="simple-list">
-				<li>
-					<span class="item-date">2025.09 – Present</span> —
-					Ningbo University
-				</li>
-				<li>
-					<span class="item-date">2022.09 – 2025.06</span> —
-					Ningbo University
-				</li>
-				<li>
-					<span class="item-date">2018.09 – 2022.06</span> —
-					Nanjing University of Science and Technology Zijin College
-				</li>
-			</ul>
-		</div>
-
-		<!-- =========================
-		     4) Publications
-		========================= -->
-		<div class="section">
-			<div class="section-title">Publications</div>
+		<section class="section" id="publications">
+			<h2 class="section-title">Publications</h2>
 			<hr class="section-rule">
 
 			<!-- ---------- 2026 ---------- -->
@@ -329,8 +344,9 @@
 
 			<div class="paper">
 				<div class="sub-left">
-					<span></span>
-					<img src="imgs/TCSVT.jpg" alt="IEEE TCSVT 2026">
+					<a class="image-link" href="imgs/TCSVT.jpg" target="_blank" rel="noopener noreferrer" aria-label="View IEEE TCSVT 2026 figure at full size (opens in a new tab)" title="View full-size image">
+						<img src="imgs/TCSVT.jpg" alt="IEEE TCSVT 2026">
+					</a>
 				</div>
 				<div class="sub-right">
 					<div class="paperTitle">Heterogeneous Imaging-Driven Light Field Reconstruction: A Benchmark Dataset and a Learning-based Method</div>
@@ -342,7 +358,6 @@
 						<a href="https://github.com/chenzean/HeteroLF_and_EPI-DIRNet" target="_blank" rel="nofollow">Code</a>
 					</div>
 				</div>
-				<div class="clear"></div>
 			</div>
 
 			<hr class="year-sep">
@@ -352,8 +367,9 @@
 
 			<div class="paper">
 				<div class="sub-left">
-					<span></span>
-					<img src="imgs/SPL.png" alt="IEEE SPL 2025">
+					<a class="image-link" href="imgs/SPL.png" target="_blank" rel="noopener noreferrer" aria-label="View IEEE SPL 2025 figure at full size (opens in a new tab)" title="View full-size image">
+						<img src="imgs/SPL.png" alt="IEEE SPL 2025">
+					</a>
 				</div>
 				<div class="sub-right">
 					<div class="paperTitle">Geometry-Aware RWKV for Heterogeneous Light Field Spatial Super-Resolution</div>
@@ -365,7 +381,6 @@
 						<a href="https://github.com/chenzean/LF-RWKVNet" target="_blank" rel="nofollow">Code</a>
 					</div>
 				</div>
-				<div class="clear"></div>
 			</div>
 
 			<hr class="year-sep">
@@ -375,8 +390,9 @@
 
 			<div class="paper">
 				<div class="sub-left">
-					<span></span>
-					<img src="imgs/TBC.png" alt="IEEE TBC 2024">
+					<a class="image-link" href="imgs/TBC.png" target="_blank" rel="noopener noreferrer" aria-label="View IEEE TBC 2024 figure at full size (opens in a new tab)" title="View full-size image">
+						<img src="imgs/TBC.png" alt="IEEE TBC 2024">
+					</a>
 				</div>
 				<div class="sub-right">
 					<div class="paperTitle">Multi-Scale Spatial-Angular Collaborative Guidance Network for Heterogeneous Light Field Spatial Super-Resolution</div>
@@ -386,13 +402,13 @@
 						<a href="https://ieeexplore.ieee.org/document/10616115" target="_blank" rel="nofollow">Paper</a>
 					</div>
 				</div>
-				<div class="clear"></div>
 			</div>
 
 			<div class="paper">
 				<div class="sub-left">
-					<span></span>
-					<img src="imgs/ICASSP.png" alt="ICASSP 2024">
+					<a class="image-link" href="imgs/ICASSP.png" target="_blank" rel="noopener noreferrer" aria-label="View ICASSP 2024 figure at full size (opens in a new tab)" title="View full-size image">
+						<img src="imgs/ICASSP.png" alt="ICASSP 2024">
+					</a>
 				</div>
 				<div class="sub-right">
 					<div class="paperTitle">Hybrid Domain Learning towards Light Field Spatial Super-Resolution using Heterogeneous Imaging</div>
@@ -402,27 +418,86 @@
 						<a href="https://ieeexplore.ieee.org/document/10446031" target="_blank" rel="nofollow">Paper</a>
 					</div>
 				</div>
-				<div class="clear"></div>
 			</div>
-		</div>
+		</section>
 
 		<!-- =========================
-		     5) Awards / Honors
+		     4) Research Software
 		========================= -->
-		<div class="section">
-			<div class="section-title">Awards / Honors</div>
+		<section class="section" id="software">
+			<h2 class="section-title">Research Software</h2>
+			<hr class="section-rule">
+			<h3 class="software-title">Light Field Viewer</h3>
+			<p class="software-description">
+				A desktop GUI application for light field image and video analysis, supporting local magnified comparison,
+				EPI (Epipolar Plane Image) extraction, and residual analysis for algorithm evaluation and visualization.
+			</p>
+			<a class="image-link software-preview" href="imgs/light_field_viewer.png" target="_blank" rel="noopener noreferrer" aria-label="View Light Field Viewer screenshot at full size (opens in a new tab)" title="View full-size screenshot">
+				<img class="software-image" src="imgs/light_field_viewer.png" alt="Light Field Viewer interface showing light field image comparison and analysis tools" width="1200" height="752" loading="lazy">
+			</a>
+			<p class="software-start">
+				<strong>Windows:</strong> Download <code>LightFieldViewer.exe</code> from the latest release and double-click to run. No Python installation is required.
+			</p>
+			<a href="https://github.com/chenzean/Light_Field_Viewer/releases/latest" target="_blank" rel="noopener noreferrer">Download for Windows</a>
+			&nbsp;|&nbsp;
+			<a href="https://github.com/chenzean/Light_Field_Viewer#readme" target="_blank" rel="noopener noreferrer">User guide</a>
+			&nbsp;|&nbsp;
+			<a href="https://github.com/chenzean/Light_Field_Viewer" target="_blank" rel="noopener noreferrer">Source code</a>
+		</section>
+
+		<!-- =========================
+		     5) Education
+		========================= -->
+		<section class="section" id="education">
+			<h2 class="section-title">Education</h2>
+			<hr class="section-rule">
+			<ul class="simple-list">
+				<li>
+					<span class="item-date">2025.09 – Present</span> —
+					Ph.D. in Information and Communication Engineering, Ningbo University
+				</li>
+				<li>
+					<span class="item-date">2022.09 – 2025.06</span> —
+					Master's degree in Communication Engineering, Ningbo University
+				</li>
+				<li>
+					<span class="item-date">2018.09 – 2022.06</span> —
+					Bachelor's degree in Communication Engineering (Embedded Systems), Nanjing University of Science and Technology Zijin College
+				</li>
+			</ul>
+		</section>
+
+		<!-- =========================
+		     6) Awards / Honors
+		========================= -->
+		<section class="section" id="awards">
+			<h2 class="section-title">Awards / Honors</h2>
 			<hr class="section-rule">
 			<ul class="simple-list">
 				<li><span class="item-date">2025 National Scholarship</span></li>
 				<li><span class="item-date">2025 Outstanding Thesis Award, Ningbo University</span></li>
 			</ul>
-		</div>
+		</section>
+
+		<!-- =========================
+		     7) Academic Service
+		========================= -->
+		<!--
+		<section class="section" id="service">
+			<h2 class="section-title">Academic Service</h2>
+			<hr class="section-rule">
+			<ul class="simple-list">
+				<li>Reviewer, <em>Scientific Reports</em></li>
+				<li>Reviewer, <em>Journal of Electronic Imaging</em></li>
+			</ul>
+		</section>
+		-->
 
 		<!-- =========================
 		     Footer
 		========================= -->
 		<div class="footer">
-			<p>Last updated: 2026-07-21</p>
+			<p>Last updated: 2026-10-14</p>
 		</div>
 
 	</div>
